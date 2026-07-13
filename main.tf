@@ -98,7 +98,7 @@ resource "aws_launch_template" "main" {
   )
 }
 
-resource "aws_lb_target_group" "main" {
+/* resource "aws_lb_target_group" "main" {
   name     = "${local.common_name}"
   port     = var.component == "frontend" ? "80" : "8080"
   protocol = "HTTP"
@@ -193,7 +193,7 @@ resource "aws_lb_listener_rule" "main" {
   }
 }
 
-/* resource "terraform_data" "main_delete" {
+resource "terraform_data" "main_delete" {
   triggers_replace = [
     aws_instance.main.id
   ]
