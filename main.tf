@@ -55,7 +55,7 @@ resource "aws_ami_from_instance" "main" {
   )
 }
 
-/* resource "aws_launch_template" "main" {
+resource "aws_launch_template" "main" {
   name = "${local.common_name}"
 
   image_id = aws_ami_from_instance.main.id # AMI ID
@@ -117,7 +117,7 @@ resource "aws_lb_target_group" "main" {
   }
 }
 
-resource "aws_autoscaling_group" "main" {
+/* resource "aws_autoscaling_group" "main" {
   name                      = "${local.common_name}"
   max_size                  = 10
   min_size                  = 1
@@ -190,5 +190,17 @@ resource "aws_lb_listener_rule" "main" {
     host_header {
       values = [local.host_header]
     }
+  }
+}
+
+resource "terraform_data" "main_delete" {
+  triggers_replace = [
+    aws_instance.main.id
+  ]
+  depends_on = [aws_autoscaling_policy.main]
+
+  # executes where terraform is running
+  provisioner "local-exec" {
+    command = "aws ec2 terminate-instances --instance-ids ${aws_instance.main.id}"
   }
 } */
