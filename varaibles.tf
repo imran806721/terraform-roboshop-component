@@ -18,6 +18,6 @@ variable "domain_name" {
     default = "devops90s.shop"
 }
 
-/* variable "rule_priority" {
+variable "rule_priority" {
     #type = string
-} */
+}
