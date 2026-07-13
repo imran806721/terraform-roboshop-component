@@ -37,7 +37,7 @@ resource "terraform_data" "main" {
   }
 }
 
-/* resource "aws_ec2_instance_state" "main" {
+resource "aws_ec2_instance_state" "main" {
   instance_id = aws_instance.main.id
   state       = "stopped"
   depends_on = [terraform_data.main]
@@ -55,7 +55,7 @@ resource "aws_ami_from_instance" "main" {
   )
 }
 
-resource "aws_launch_template" "main" {
+/* resource "aws_launch_template" "main" {
   name = "${local.common_name}"
 
   image_id = aws_ami_from_instance.main.id # AMI ID
